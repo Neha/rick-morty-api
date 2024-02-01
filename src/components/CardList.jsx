@@ -8,7 +8,7 @@ const CardList = ({characters}) => {
             return <Card key={id} character={character}/>
         })
     }
-    return  <ul className="flex flex-wrap gap-2">{characters && createCard()}</ul>
+    return  <ul className="flex flex-wrap gap-4  justify-center">{characters && createCard()}</ul>
 }
 
 export default CardList

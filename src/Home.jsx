@@ -18,7 +18,6 @@ const Home = () => {
 
 
   const searchTerm = (e) => {
-    console.log(e.target.value);
     setSearchTermCharacter(e.target.value);
     searchCharacters(e.target.value);
   };
@@ -28,8 +27,9 @@ const Home = () => {
       const searchResults = characters.filter((character) =>
         character.name.toLowerCase().includes(searchTermCharacter.toLowerCase())
       );
-
+      setNoResult(false)
       setCharacters(searchResults);
+      setNoResult(searchResults.length === 0);
     } else {
       setCharacters(initData);
     }
@@ -63,24 +63,25 @@ const Home = () => {
       <div>
         <Input type="search" changeHandler={searchTerm} />
       </div>
-      {totalResults && <p>There are {totalResults} characters</p>}
-      <div className="flex">
-        <CardList characters={characters} />
-        {noresult && <NoResult />}
+      {totalResults && <p className="text-sm my-3 text-gray-700">There are <span className="font-bold text-black0">{totalResults}</span> characters</p>}
+      <div className="flex  justify-center">
+        {noresult ?  <NoResult /> : <CardList characters={characters} />}
       </div>
-      <div>
+      <div className="flex justify-center">
         {totalPages && (
-          <div>
-            <p>Page {currentPage} of {totalPages}</p>
+          <div className="flex gap-2 my-4 items-baseline">
             <Button
               buttonLabel="Previous"
               clickHandler={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
+              
             />
+            <p>Page {currentPage} of {totalPages}</p>
             <Button
               buttonLabel="Next"
               clickHandler={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
+              
             />
           </div>
         )}

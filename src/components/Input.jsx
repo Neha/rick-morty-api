@@ -6,7 +6,7 @@ const Input = ({ type, changeHandler }) => {
         type={type}
         onChange={(e) => changeHandler(e)}
         placeholder="Search..."
-        className="border-2 rounded-md p-2 border-slate-100 w-full"
+        className="border-2 rounded-md p-2 border-slate-600 w-full"
       />
     
   );
