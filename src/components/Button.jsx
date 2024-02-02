@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
-const Button = ({ buttonLabel, clickHandler}) => {
-    return <button onClick={clickHandler}>{buttonLabel}</button>
+const Button = ({ buttonLabel, clickHandler, classes,disabled}) => {
+    return <button onClick={clickHandler} disabled={disabled} className={`${classes}`}>{buttonLabel}</button>
 }
 
 export default Button

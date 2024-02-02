@@ -1,5 +1,5 @@
 const Footer = () => {
-    return <footer>2024-2025</footer>
+    return <footer className="text-center text-xs">2024-2025</footer>
 }
 
 export default Footer

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Input from "./components/Input";
+import Search from "./components/Search";
 import Button from "./components/Button";
 import CardList from "./components/CardList";
 import { API_URL } from "./constants/URL";
+import search from './constants/en';
 import NoResult from "./components/NoResult";
 
 const Home = () => {
@@ -60,10 +61,8 @@ const Home = () => {
   return (
     <section>
       <Header />
-      <div>
-        <Input type="search" changeHandler={searchTerm} />
-      </div>
-      {totalResults && <p className="text-sm my-3 text-gray-700">There are <span className="font-bold text-black0">{totalResults}</span> characters</p>}
+      <Search searchTerm={searchTerm}/>
+      {totalResults && <p className="text-sm my-3 text-gray-700">{search.SEARCH_RESULTS} <span className="font-bold text-black0">{totalResults}</span></p>}
       <div className="flex  justify-center">
         {noresult ?  <NoResult /> : <CardList characters={characters} />}
       </div>
@@ -74,6 +73,7 @@ const Home = () => {
               buttonLabel="Previous"
               clickHandler={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
+              classes={currentPage === 1 ? 'bg-gray-200 text-gray-400' :'bg-black text-white'}
               
             />
             <p>Page {currentPage} of {totalPages}</p>
@@ -81,6 +81,7 @@ const Home = () => {
               buttonLabel="Next"
               clickHandler={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
+              classes={currentPage === totalPages ? 'bg-gray-200 text-black' :'bg-black text-white'} 
               
             />
           </div>
